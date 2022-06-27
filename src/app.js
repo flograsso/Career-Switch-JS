@@ -228,23 +228,29 @@ app.check = async function check(blocks, token)
 {
     try{
 
-        console.log("Proceso y ordeno bloques. Aguarde...");
-        // Get the initial block
-        let initialBlock = blocks[0];
+        if (typeof blocks !== "undefined" && typeof token !== "undefined" && Array.isArray(blocks) && blocks.length > 1)
+        {
+            console.log("Proceso y ordeno bloques. Aguarde...");
+            // Get the initial block
+            let initialBlock = blocks[0];
+    
+            // Save it into result array
+            let resultArray = [];
+            resultArray[0] = initialBlock;
+            
+            // Delete it from the data array
+            blocks.splice(0, 1);
+    
+            // Call recursive function
+            await resolveBlockOrder(initialBlock, blocks, token, resultArray);
+    
+    
+    
+            return resultArray;
+        }
+        else
+            console.log("Parametros inválidos");
 
-        // Save it into result array
-        let resultArray = [];
-        resultArray[0] = initialBlock;
-        
-        // Delete it from the data array
-        blocks.splice(0, 1);
-
-        // Call recursive function
-        await resolveBlockOrder(initialBlock, blocks, token, resultArray);
-
-
-
-        return resultArray;
 
     }
     catch(error)
