@@ -1,13 +1,13 @@
 const request = require('supertest')
-const app = require('../index')
+const app = require('../app')
 jest.setTimeout(40000);
 
 
 // Testeo el endpoint de autenticacion
-describe('Envio credenciales esperando obtener token', () => {
-  it('Obtengo token de autenticacioj', async () => {
+describe('Llamo a la funcion check para comprobar su funcionamiento', () => {
+  it('Ordeno y comparo con resultado conocido', async () => {
     let mockedArrayData = ["f319", "3720", "4e3e", "46ec", "c7df", "c1c7", "80fd", "c4ea"];
-    const mock = jest
+    const getArrayData = jest
     .fn()
     .mockReturnValue(mockedArrayData);
 
